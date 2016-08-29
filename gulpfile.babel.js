@@ -1,4 +1,4 @@
-import fs from 'fs'
+
 import gulp from 'gulp'
 import browserify from 'browserify'
 import watchify from 'watchify'
@@ -9,7 +9,8 @@ let b = browserify({
   entries: ['./src/index.jsx'],
   cache: {},
   packageCache: {},
-  plugin: [watchify]
+  plugin: [watchify],
+  debug: true
 })
 b.transform(babelify, {
   presets: ['es2015', 'react'],
@@ -21,7 +22,6 @@ b.on('log', function (msg) {
   console.log(msg)
 })
 b.on('file', function(file) {
-  //console.log(file)
   process.stdout.write('.');
 })
 
